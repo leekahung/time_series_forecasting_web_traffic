@@ -19,6 +19,20 @@ through first seasonal differencing after first differencing.
 
 To obtain the SARIMA model we want for our forecast model, the pmdarima library\
 was used to obtain the ordering for p, q, P, and Q. The orderings with the best\
-AIC criterion was the SARIMA(2,1,0)(5,1,1)<sub>7</sub>
+AIC criterion was the SARIMA(2,1,0)(5,1,1)<sub>7</sub>. The residuals are\
+somewhat correlated, based on test summaries, Prob(Q) > 0.05. However, this\
+could not be helped given its seasonal nature when modeling with ARIMA.
+
+Overall, the one step ahead forecasting is pretty close to that of the actual\
+time series it was trained on with a mean absolute error (MAE) of ~471. Dynamic\
+forecasting was worse at 2258.
+
+When applied to the unseen test data (the last month of 2016) the forecasted MAE\
+came out to be around 603.Most of the forecast line fell within 1 standard\
+deviation of the test data with the cyclic peaks being well modeled (minus the\
+last week) and the cyclic troughs being qualitatively captured despite its\
+underesimate (minus the last week). The final week of the year appears to be a\
+unique case where activity decreases, which is reasonable considering it's\
+holiday season for many people.
 
 ![Image of SARIMA model](https://github.com/leekahung/time_series_forecasting_web_traffic/blob/main/images/time_series_modeling.png)
